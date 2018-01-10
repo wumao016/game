@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>像素鸟</title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			display: none;
+		}
+		body{
+			text-align: center;
+		}
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+	</head>
+	<body>
+		<img src="images/title.png" id="title" alt="">
+		<img src="images/tutorial.png" id="tutorial" alt="">
+		<img src="images/land.png" id = "land" alt="">
+		<img src="images/bird0_0.png" id="bird0_0" alt="">
+		<img src="images/bird0_1.png" id="bird0_1" alt="">
+		<img src="images/bird0_2.png" id="bird0_2" alt="">
+		<img src="images/bg_day.png" id = "bg_day" alt="">
+		<img src="images/pipe_down.png" id="pipe_down" alt="">
+		<img src="images/pipe_up.png" id="pipe_up" alt="">
+		<canvas width = "360" height="512" id="my_canvas"></canvas>
+		<!-- 引包 -->
+		<script type="text/javascript" src="js/game.js"></script>
+		<script type="text/javascript" src="js/pipe.js"></script>
+		<script type="text/javascript" src="js/bird.js"></script>
+		<script type="text/javascript" src="js/background.js"></script>
+		<script type="text/javascript">
+			var a = null;
+			window.onload =function(){
+			// 得到图片
+				var land_pic = $("land");
+				var tutorial = $("tutorial");
+				var title = $("title");
+				var bg_pic = $("bg_day");
+				var pipe_up = $("pipe_up");
+				var pipe_down =$("pipe_down");
+				var bird_arr = [$("bird0_0"),$("bird0_1"),$("bird0_2")];
+			    // 刷子
+			    var ctx = $("my_canvas").getContext("2d");
+			    // 地面
+			    var land = new Background(land_pic,2);
+			    // 背景
+			    var bg = new Background(bg_pic,1);
+				// 管子
+				var pipe = new Pipe(pipe_down,pipe_up,2);
+				// 鸟
+				var bird = new Bird(bird_arr);
+	    		var g = new Game(ctx,land,bg,pipe,bird,title,tutorial);
+			    function $(id){
+			     return document.getElementById(id);
+			    }
+			}
+		</script>
+	</body>
+</html>
